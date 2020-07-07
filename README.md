@@ -17,6 +17,8 @@ interest in carnivorous plants in a couple of R users.
 
 It is published under a [Creative Commons Zero
 license](https://github.com/r-link/drosera/blob/master/LICENSE), so it
-is free to use in any kind of commercial or non-commercial setting. It
-would be kind if you add a link to this Github page in case you decide
-to use it, but I won’t be mad if you don’t.
+is free to use in any kind of commercial or non-commercial setting.
+However, it would be kind if you add a link to the package’s [Github
+page](https://github.com/r-link/drosera) in case you decide to use it
+(and maybe drop me a line so I can link your project in the repository),
+but I won’t be mad if you don’t.
