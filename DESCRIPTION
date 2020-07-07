@@ -1,0 +1,22 @@
+Package: drosera
+Type: Package
+Title: A Botanical Alternative to the iris Dataset
+Version: 0.0.1
+Authors@R:
+    person(
+      given = "Roman M.",
+      family = "Link",
+      role = c("aut", "cre"),
+      email = "roman.link@uni-wuerzburg.de"
+    )
+Description: Dataset containing the leaf blade and petiole length and width
+    for 4 African sundew species (Drosera capensis, madagascariensis and 
+    venusta). This dataset is completely free for public use and is meant 
+    as an eugenics-free alternative to the iris dataset by Anderson and 
+    Fisher.
+License: CC0
+URL: http://github.com/r-link/drosera
+BugReports: http://github.com/r-link/drosera/issues
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+LazyData: true
