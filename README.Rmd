@@ -17,7 +17,7 @@ It is published under a [Creative Commons Zero license](https://github.com/r-lin
 
 However, it would be kind if you add a link to the package's [Github page](https://github.com/r-link/drosera) in case you decide to use it (and maybe drop me a line so I can link your project in the repository), but I won’t be mad if you don’t.
 
-## Installation
+## Usage
 The `drosera` data package can be installed from Github using `remotes::install_github()`:
 
 ``` {r, eval = FALSE}
@@ -37,3 +37,26 @@ Afterwards, the `drosera` data can be used as a regular loaded dataset:
 ``` {r}
 head(drosera)
 ```
+
+The dataset shows strong correlations between the different variables, and pronounced inter- and intraspecific differences. Here's an illustration based on the  [`corrmorant`](https://github.com/r-link/corrmorant) package.
+
+```{r, message = FALSE, fig.width = 7, fig.height = 7}
+# load packages
+library(tidyverse)
+library(corrmorant)
+
+# create plot
+ggcorrm(drosera,                                 # dataset
+        aes(color = species, fill = species),    # settings of non-standard aesthetics: color and fill by species
+        rescale = "as_is",                       # no rescaling
+        labels = paste(str_to_sentence(gsub("_", " ", names(drosera)[3:6])), "(mm)")) + # labels for variable names
+  lotri(geom_point(alpha = 0.4)) +               # points in lower triangle 
+  utri_corrtext() +                              # indicator of (Pearson) correlation in upper triangle
+  dia_density(lower = .4, color = "black", size = .3, alpha = .5) + # density plots on the plot diagonal
+  dia_names(y_pos = .2) +                        # variable names on the plot diagonal
+  scale_color_viridis_d(option = "C", begin = .1, end = .9,  # color scale settings
+                        aesthetics = c("fill", "color"))
+
+
+```
+

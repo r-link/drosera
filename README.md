@@ -32,7 +32,7 @@ page](https://github.com/r-link/drosera) in case you decide to use it
 (and maybe drop me a line so I can link your project in the repository),
 but I won’t be mad if you don’t.
 
-## Installation
+## Usage
 
 The `drosera` data package can be installed from Github using
 `remotes::install_github()`:
@@ -65,3 +65,34 @@ head(drosera)
     ## 4 capensis   rubra          56.40          1.65        38.20        3.30
     ## 5 capensis   rubra          28.60          1.00        15.80        2.80
     ## 6 capensis   rubra          32.85          1.50        24.65        4.40
+
+The dataset shows strong correlations between the different variables,
+and pronounced inter- and intraspecific differences. Here’s an
+illustration based on the
+[`corrmorant`](https://github.com/r-link/corrmorant) package.
+
+``` r
+# load packages
+library(tidyverse)
+library(corrmorant)
+
+# create plot
+ggcorrm(drosera,                                 # dataset
+        aes(color = species, fill = species),    # settings of non-standard aesthetics: color and fill by species
+        rescale = "as_is",                       # no rescaling
+        labels = paste(str_to_sentence(gsub("_", " ", names(drosera)[3:6])), "(mm)")) + # labels for variable names
+  lotri(geom_point(alpha = 0.4)) +               # points in lower triangle 
+  utri_corrtext() +                              # indicator of (Pearson) correlation in upper triangle
+  dia_density(lower = .4, color = "black", size = .3, alpha = .5) + # density plots on the plot diagonal
+  dia_names(y_pos = .2) +                        # variable names on the plot diagonal
+  scale_color_viridis_d(option = "C", begin = .1, end = .9,  # color scale settings
+                        aesthetics = c("fill", "color"))
+```
+
+    ## The following column names were replaced:
+    ## petiole_length   ->  Petiole length (mm)
+    ## petiole_width    ->  Petiole width (mm)
+    ## blade_length ->  Blade length (mm)
+    ## blade_width  ->  Blade width (mm)
+
+![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
