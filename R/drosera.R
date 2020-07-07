@@ -16,8 +16,9 @@
 #'   live up to high levels of scientific rigor. However, when it comes to
 #'   illustrating correlation between biometric variables, the dataset does its
 #'   job, and therefore can be used as an replacement for the
-#'   [iris][datasets::iris] dataset by Anderson and Fisher, which has a
-#'   problematic past due to its publication of the Journal of Eugenics.
+#'   [iris][datasets::iris] dataset by Edgar Anderson and Ronald A. Fisher,
+#'   which has a problematic past due to its publication in the Annals of
+#'   Eugenics.
 #'
 #'   The `drosera` dataset is published under a Creative Commons Zero license
 #'   and is therefore free for all kinds of commercial and non-commercial use.
