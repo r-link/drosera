@@ -21,9 +21,7 @@ varieties of three African sundew species: the typical and red forms of
 (center) and the typical and anthocyanin-reduced forms *Drosera venusta*
 (right).
 
-<img src="man/figures/capensis.jpg" height="200" />
-<img src="man/figures/madagascariensis.jpg" height="200" />
-<img src="man/figures/venusta.jpg"height="200" />
+<img src="man/figures/droseras.png" width="650" />
 
 It is published under a [Creative Commons Zero
 license](https://github.com/r-link/drosera/blob/master/LICENSE), so it
