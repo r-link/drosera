@@ -17,8 +17,17 @@ interest in carnivorous plants in a couple of R users.
 
 The dataset contains 150 observations of leaf and petiole size for five
 varieties of three African sundew species: the typical and red forms of
-*Drosera capensis*, the typical form of *Drosera madagascarienis* and
-the typical and anthocyanin-reduced forms *Drosera venusta*.
+*Drosera capensis* (left), the typical form of *Drosera madagascarienis*
+(center) and the typical and anthocyanin-reduced forms *Drosera venusta*
+(right).
+
+<br></br>
+
+<img src="man/figures/capensis.jpg" height="250" />
+<img src="man/figures/madagascariensis.jpg" height="250" />
+<img src="man/figures/venusta.jpg"height="250" />
+
+<br></br>
 
 It is published under a [Creative Commons Zero
 license](https://github.com/r-link/drosera/blob/master/LICENSE), so it
@@ -31,6 +40,15 @@ However, it would be kind if you add a link to the package’s [Github
 page](https://github.com/r-link/drosera) in case you decide to use it
 (and maybe drop me a line so I can link your project in the repository),
 but I won’t be mad if you don’t.
+
+[*Drosera*](https://en.wikipedia.org/wiki/Drosera) is a wide-spread
+genus of carnivorous plants (around 200 species) in the family
+Droseraceae that catch their (mostly insect) prey with a sticky trap
+mechanism based on a mucilaginous secretion from stalked glands covering
+their leaf surface. The glistering drops of mucilage on their
+tentacle-like glands have earned them the common name sundews.
+
+<img src="man/figures/madagascariensis1.jpg" align="center" width="400" />
 
 ## Usage
 
