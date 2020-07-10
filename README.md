@@ -6,13 +6,13 @@ Roman M. Link
 
 `drosera` is a data package that provides a botanical alternative for
 Anderson and Fisher’s famous `iris` dataset which is free from its
-troublesome past (see e.g. [this blog post on Armchair
-Ecology](https://armchairecology.blog/iris-dataset/) and [this great
-Twitter thread by Macyclare
-Griffin](https://twitter.com/mcmcgriffin/status/1271940745193275393)).
-It is based on a set of plants that I am growing on my windowsill which
-I measured with a caliper in a matter of a couple of hours to have an
-example dataset for the
+troublesome past (see e.g. [this blog
+post](https://armchairecology.blog/iris-dataset/) on Armchair Ecology
+and [this great Twitter
+thread](https://twitter.com/mcmcgriffin/status/1271940745193275393) by
+Maryclare Griffin). It is based on a set of plants that I am growing on
+my windowsill which I measured with a caliper in a matter of a couple of
+hours to have an example dataset for the
 [`corrmorant`](https://github.com/r-link/corrmorant) package and is
 entirely devoid of scientific rigor. However, I believe it is a useful
 example dataset that will hopefully enable some people to replace `iris`
