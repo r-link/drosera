@@ -17,11 +17,13 @@ interest in carnivorous plants in a couple of R users.
 
 The dataset contains 150 observations of leaf and petiole size for five
 varieties of three African sundew species: the typical and red forms of
-*Drosera capensis* (left), the typical form of *Drosera madagascarienis*
-(center) and the typical and anthocyanin-reduced forms *Drosera venusta*
-(right).
-
-<img src="man/figures/droseras.png" width="700" />
+the Cape sundew, [*Drosera
+capensis*,](https://en.wikipedia.org/wiki/Drosera_capensis) (left), the
+typical form of [*Drosera
+madagascarienis*](https://en.wikipedia.org/wiki/Drosera_madagascariensis)
+(center) and the typical and anthocyanin-reduced forms of [*Drosera
+venusta*](https://en.wikipedia.org/wiki/Drosera_venusta) (right, photos
+taken by myself). <img src="man/figures/droseras.png" width="700" />
 
 It is published under a [Creative Commons Zero
 license](https://github.com/r-link/drosera/blob/master/LICENSE), so it
