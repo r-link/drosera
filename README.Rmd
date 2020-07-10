@@ -1,5 +1,5 @@
 ---
-title: "drosera: A Botanical Alternative to the iris Dataset"
+title: "drosera: Leaf And Petiole Size For Three African Sundew Species"
 author: Roman M. Link
 output: github_document
 ---
@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Description
-`drosera` is a data package that provides a botanical replacement dataset for Anderson and Fisher's famous `iris` dataset that is free from its troublesome past. It is based on a set of plants that I am growing on my windowsill which I measured with a caliper in a matter of a couple of hours to have an example dataset for the [`corrmorant`](https://github.com/r-link/corrmorant) package and is entirely devoid of scientific rigor. However, I believe it is a useful example dataset that will hopefully enable some people to replace `iris` in their code and package documentation, and maybe even spark an interest in carnivorous plants in a couple of R users.
+`drosera` is a data package that provides a botanical alternative for Anderson and Fisher's famous `iris` dataset which is free from its troublesome past (see e.g. [this blog post on Armchair Ecology](https://armchairecology.blog/iris-dataset/) and [this great Twitter thread by Macyclare Griffin](https://twitter.com/mcmcgriffin/status/1271940745193275393)). It is based on a set of plants that I am growing on my windowsill which I measured with a caliper in a matter of a couple of hours to have an example dataset for the [`corrmorant`](https://github.com/r-link/corrmorant) package and is entirely devoid of scientific rigor. However, I believe it is a useful example dataset that will hopefully enable some people to replace `iris` in their code and package documentation, and maybe even spark an interest in carnivorous plants in a couple of R users.
 
 The dataset contains 150 observations of leaf and petiole size for five varieties of three African sundew species: the typical and red forms of the Cape sundew, [_Drosera capensis_,](https://en.wikipedia.org/wiki/Drosera_capensis) (left), the typical form of [_Drosera madagascarienis_](https://en.wikipedia.org/wiki/Drosera_madagascariensis) (center) and the typical and anthocyanin-reduced forms of [_Drosera venusta_](https://en.wikipedia.org/wiki/Drosera_venusta) (right, photos taken by myself). 
 <img src="man/figures/droseras.png" width="700" />

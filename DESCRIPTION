@@ -1,6 +1,6 @@
 Package: drosera
 Type: Package
-Title: A Botanical Alternative to the iris Dataset
+Title: Leaf And Petiole Size For Three African Sundew Species
 Version: 0.0.1
 Authors@R:
     person(
