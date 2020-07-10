@@ -21,7 +21,7 @@ varieties of three African sundew species: the typical and red forms of
 (center) and the typical and anthocyanin-reduced forms *Drosera venusta*
 (right).
 
-<img src="man/figures/droseras.png" width="650" />
+<img src="man/figures/droseras.png" width="700" />
 
 It is published under a [Creative Commons Zero
 license](https://github.com/r-link/drosera/blob/master/LICENSE), so it
@@ -78,8 +78,10 @@ head(drosera)
     ## 5 capensis   rubra          28.60          1.00        15.80        2.80
     ## 6 capensis   rubra          32.85          1.50        24.65        4.40
 
+## Examples for visualizations with corrmorant
+
 The dataset shows strong correlations between the different variables,
-and pronounced inter- and intraspecific differences. Here’s an
+and pronounced inter- and intraspecific differences. Here’s a basic
 illustration based on the
 [`corrmorant`](https://github.com/r-link/corrmorant) package.
 
@@ -108,3 +110,76 @@ ggcorrm(drosera,                                 # dataset
     ## blade_width  ->  Blade width (mm)
 
 ![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+
+The patterns become even clearer when assessed on a log scale:
+
+``` r
+drosera %>% 
+  mutate_if(is.numeric, log) %>% 
+  ggcorrm(
+    aes(color = species, fill = species),   
+    labels = paste(str_to_sentence(gsub("_", " ", names(drosera)[3:6])), "(mm)")) + 
+  lotri(geom_point(alpha = 0.4)) +              
+  utri_corrtext() +                              
+  dia_density(lower = .4, color = "black", size = .3, alpha = .5) + 
+  dia_names(y_pos = .2) +                        
+  scale_color_viridis_d(begin = .15, end = .85, aesthetics = c("fill", "color")) 
+```
+
+    ## The following column names were replaced:
+    ## petiole_length   ->  Petiole length (mm)
+    ## petiole_width    ->  Petiole width (mm)
+    ## blade_length ->  Blade length (mm)
+    ## blade_width  ->  Blade width (mm)
+
+![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+Notably, for the two species where different varieties were measured,
+there are also subtle but notable differences between the distinct
+forms:
+
+``` r
+# Function for plots
+pfun <- function(data){
+  ggcorrm( data,
+    aes(color = variety, fill = variety), 
+    bg_dia   = "grey20",
+    bg_lotri = "grey40",
+    bg_utri  = "grey40",
+    labels = paste(str_to_sentence(gsub("_", " ", names(drosera)[3:6])))
+  ) + 
+    lotri(geom_smooth(alpha = .3, method = "lm", size = .35)) +
+    lotri(geom_point(alpha = .65)) +              
+    utri_corrtext(ncol = 1, squeeze = .3) +        
+    dia_density(lower = .3, alpha = .5) +
+    dia_names(y_pos = .15, col = "#DDDDDD") +  
+    theme(panel.border    = element_rect(fill = NA, color = "#DDDDDD", size = .8),
+          legend.background = element_blank(),
+          plot.background = element_rect(fill = "#DDDDDD", , color = "#DDDDDD"),
+          plot.title = element_text(face = "italic", hjust = 0.5, size = 15)) 
+}
+
+# Create plot for Drosera capensis 
+capensis <- pfun(filter(drosera, species == "capensis")) +     
+    scale_color_manual(values = c("#BB4456", "#25BB04"), aesthetics = c("color", "fill"),
+                       name = "Variety") +
+    ggtitle("Drosera capensis") 
+
+# Create plot for Drosera venusta
+venusta <- pfun(filter(drosera, species == "venusta")) +     
+  scale_color_manual(values = c("#88FF96", "#25BB04"), aesthetics = c("color", "fill"),
+                     name = "Variety") +
+  ggtitle("Drosera venusta") 
+
+# Combine both plots using cowplot::plotgrid()
+cowplot::plot_grid(capensis, venusta, nrow = 1) +
+  theme(plot.background = element_rect(fill = "#DDDDDD", color = NA))
+```
+
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+You can clearly see that for *Drosera capensis*, the plants of the red
+form have notably more slender leaves and petioles than the typical
+form. For *Drosera venusta*, the differences in proportions were less
+pronounced, but the plants of the anthocyanin-reduced form on average
+are smaller than the plants of the typical plants.

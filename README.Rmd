@@ -46,7 +46,9 @@ Afterwards, the `drosera` data can be used as a regular loaded dataset:
 head(drosera)
 ```
 
-The dataset shows strong correlations between the different variables, and pronounced inter- and intraspecific differences. Here's an illustration based on the  [`corrmorant`](https://github.com/r-link/corrmorant) package.
+
+## Examples for visualizations with corrmorant
+The dataset shows strong correlations between the different variables, and pronounced inter- and intraspecific differences. Here's a basic illustration based on the [`corrmorant`](https://github.com/r-link/corrmorant) package.
 
 ```{r, message = FALSE, fig.width = 7, fig.height = 7}
 # load packages
@@ -69,3 +71,61 @@ ggcorrm(drosera,                                 # dataset
 ```
 
 
+The patterns become even clearer when assessed on a log scale:
+
+```{r message = FALSE, fig.width = 7, fig.height = 7}
+drosera %>% 
+  mutate_if(is.numeric, log) %>% 
+  ggcorrm(
+    aes(color = species, fill = species),   
+    labels = paste(str_to_sentence(gsub("_", " ", names(drosera)[3:6])), "(mm)")) + 
+  lotri(geom_point(alpha = 0.4)) +              
+  utri_corrtext() +                              
+  dia_density(lower = .4, color = "black", size = .3, alpha = .5) + 
+  dia_names(y_pos = .2) +                        
+  scale_color_viridis_d(begin = .15, end = .85, aesthetics = c("fill", "color")) 
+```
+
+
+Notably, for the two species where different varieties were measured, there are also subtle but notable differences between the distinct forms:
+
+```{r message = FALSE, results = FALSE, fig.width = 10, fig.height = 4.5}
+# Function for plots
+pfun <- function(data){
+  ggcorrm( data,
+    aes(color = variety, fill = variety), 
+    bg_dia   = "grey20",
+    bg_lotri = "grey40",
+    bg_utri  = "grey40",
+    labels = paste(str_to_sentence(gsub("_", " ", names(drosera)[3:6])))
+  ) + 
+    lotri(geom_smooth(alpha = .3, method = "lm", size = .35)) +
+    lotri(geom_point(alpha = .65)) +              
+    utri_corrtext(ncol = 1, squeeze = .3) +        
+    dia_density(lower = .3, alpha = .5) +
+    dia_names(y_pos = .15, col = "#DDDDDD") +  
+    theme(panel.border    = element_rect(fill = NA, color = "#DDDDDD", size = .8),
+          legend.background = element_blank(),
+          plot.background = element_rect(fill = "#DDDDDD", , color = "#DDDDDD"),
+          plot.title = element_text(face = "italic", hjust = 0.5, size = 15)) 
+}
+
+# Create plot for Drosera capensis 
+capensis <- pfun(filter(drosera, species == "capensis")) +     
+    scale_color_manual(values = c("#BB4456", "#25BB04"), aesthetics = c("color", "fill"),
+                       name = "Variety") +
+    ggtitle("Drosera capensis") 
+
+# Create plot for Drosera venusta
+venusta <- pfun(filter(drosera, species == "venusta")) +     
+  scale_color_manual(values = c("#88FF96", "#25BB04"), aesthetics = c("color", "fill"),
+                     name = "Variety") +
+  ggtitle("Drosera venusta") 
+
+# Combine both plots using cowplot::plotgrid()
+cowplot::plot_grid(capensis, venusta, nrow = 1) +
+  theme(plot.background = element_rect(fill = "#DDDDDD", color = NA))
+
+```
+
+You can clearly see that for _Drosera capensis_, the plants of the red form have notably more slender leaves and petioles than the typical form. For _Drosera venusta_, the differences in proportions were less pronounced, but the plants of the anthocyanin-reduced form on average are smaller than the plants of the typical plants.
