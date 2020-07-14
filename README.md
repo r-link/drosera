@@ -103,8 +103,8 @@ ggcorrm(drosera,                                 # dataset
         labels = paste(str_to_sentence(gsub("_", " ", names(drosera)[3:6])), "(mm)")) + # labels for variable names
   lotri(geom_point(alpha = 0.4)) +               # points in lower triangle 
   utri_corrtext() +                              # indicator of (Pearson) correlation in upper triangle
-  dia_density(lower = .4, color = "black", size = .3, alpha = .5) + # density plots on the plot diagonal
-  dia_names(y_pos = .2) +                        # variable names on the plot diagonal
+  dia_density(color = "black", size = .3, alpha = .5) + # density plots on the plot diagonal
+  dia_names() +                        # variable names on the plot diagonal
   scale_color_viridis_d(option = "C", begin = .1, end = .9,  # color scale settings
                         aesthetics = c("fill", "color"))
 ```
@@ -120,16 +120,17 @@ ggcorrm(drosera,                                 # dataset
 The patterns become even clearer when assessed on a log scale:
 
 ``` r
-drosera %>% 
-  mutate_if(is.numeric, log) %>% 
-  ggcorrm(
-    aes(color = species, fill = species),   
-    labels = paste(str_to_sentence(gsub("_", " ", names(drosera)[3:6])), "(mm)")) + 
+ggcorrm(
+  drosera,
+  aes(color = species, fill = species),   
+  labels = paste(str_to_sentence(gsub("_", " ", names(drosera)[3:6])), "(mm)"),
+  rescale = "as_is") + 
   lotri(geom_point(alpha = 0.4)) +              
   utri_corrtext() +                              
-  dia_density(lower = .4, color = "black", size = .3, alpha = .5) + 
-  dia_names(y_pos = .2) +                        
-  scale_color_viridis_d(begin = .15, end = .85, aesthetics = c("fill", "color")) 
+  dia_density(color = "black", size = .3, alpha = .5) + 
+  dia_names() +                        
+  scale_color_viridis_d(begin = .15, end = .85, aesthetics = c("fill", "color")) +
+  scale_x_log10() + scale_y_log10()
 ```
 
     ## The following column names were replaced:
@@ -152,17 +153,18 @@ pfun <- function(data){
     bg_dia   = "grey20",
     bg_lotri = "grey40",
     bg_utri  = "grey40",
-    labels = paste(str_to_sentence(gsub("_", " ", names(drosera)[3:6])))
+    labels = paste(str_to_sentence(gsub("_", " ", names(drosera)[3:6]))),
+    rescale = "as_is"
   ) + 
     lotri(geom_smooth(alpha = .3, method = "lm", size = .35)) +
     lotri(geom_point(alpha = .65)) +              
     utri_corrtext(ncol = 1, squeeze = .3) +        
-    dia_density(lower = .3, alpha = .5) +
-    dia_names(y_pos = .15, col = "#DDDDDD") +  
+    dia_density(alpha = .5) +
+    dia_names(col = "#DDDDDD") +  
     theme(panel.border    = element_rect(fill = NA, color = "#DDDDDD", size = .8),
           legend.background = element_blank(),
           plot.background = element_rect(fill = "#DDDDDD", , color = "#DDDDDD"),
-          plot.title = element_text(face = "italic", hjust = 0.5, size = 15)) 
+          plot.title = element_text(face = "italic", hjust = 0.5, size = 15))
 }
 
 # Create plot for Drosera capensis 
