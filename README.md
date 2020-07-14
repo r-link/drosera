@@ -99,7 +99,6 @@ library(corrmorant)
 # create plot
 ggcorrm(drosera,                                 # dataset
         aes(color = species, fill = species),    # settings of non-standard aesthetics: color and fill by species
-        rescale = "as_is",                       # no rescaling
         labels = paste(str_to_sentence(gsub("_", " ", names(drosera)[3:6])), "(mm)")) + # labels for variable names
   lotri(geom_point(alpha = 0.4)) +               # points in lower triangle 
   utri_corrtext() +                              # indicator of (Pearson) correlation in upper triangle
@@ -123,8 +122,7 @@ The patterns become even clearer when assessed on a log scale:
 ggcorrm(
   drosera,
   aes(color = species, fill = species),   
-  labels = paste(str_to_sentence(gsub("_", " ", names(drosera)[3:6])), "(mm)"),
-  rescale = "as_is") + 
+  labels = paste(str_to_sentence(gsub("_", " ", names(drosera)[3:6])), "(mm)")) + 
   lotri(geom_point(alpha = 0.4)) +              
   utri_corrtext() +                              
   dia_density(color = "black", size = .3, alpha = .5) + 
@@ -154,7 +152,6 @@ pfun <- function(data){
     bg_lotri = "grey40",
     bg_utri  = "grey40",
     labels = paste(str_to_sentence(gsub("_", " ", names(drosera)[3:6]))),
-    rescale = "as_is"
   ) + 
     lotri(geom_smooth(alpha = .3, method = "lm", size = .35)) +
     lotri(geom_point(alpha = .65)) +              
