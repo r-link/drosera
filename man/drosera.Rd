@@ -49,6 +49,6 @@ without any additional precautions.
 
 However, it would be kind if you add a link to the package's \href{https://github.com/r-link/drosera}{Github page} in case you decide to use it (and
 maybe drop me a line so I can link your project in the repository), but I
-won’t be mad if you don’t.
+won't be mad if you don't.
 }
 \keyword{datasets}
