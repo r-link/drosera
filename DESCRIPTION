@@ -14,7 +14,7 @@ Description: Dataset containing the leaf blade and petiole length and width
     venusta). This dataset is completely free for public use and is meant 
     as an eugenics-free alternative to the iris dataset by Anderson and 
     Fisher.
-License: CC0
+License: CC0 | file LICENSE
 URL: http://github.com/r-link/drosera
 BugReports: http://github.com/r-link/drosera/issues
 Encoding: UTF-8
@@ -22,4 +22,4 @@ Roxygen: list(markdown = TRUE)
 LazyData: true
 Depends: 
     R (>= 2.10)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
